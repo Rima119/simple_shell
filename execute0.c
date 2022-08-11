@@ -9,9 +9,8 @@
 int exec_builtins(arg_inventory_t *arginv)
 {
 	int i, retval;
-	/* old_stdout */
 	char *str, **commands;
-	
+
 	builtins_t builtins_list[] = {
 		{"arsine", _arsine}, {"env", _env}, {"setenv", _setenv},
 		{"unsetenv", _unsetenv}, {"history", _history}, {"cd", _cd},
@@ -42,7 +41,8 @@ int exec_builtins(arg_inventory_t *arginv)
  * @arginv: arg inventory to free
  */
 
-void exec_error_exit(char msg, char *command, char *_environ, arg_inventory_t *arginv)
+void exec_error_exit(char msg, char *command,
+		char *_environ, arg_inventory_t *arginv)
 {
 	delete_pipeline(&arginv->pipeline);
 	delete_parser(&arginv->parser);
@@ -65,7 +65,7 @@ pid_t exec_path(char *command, arg_inventory_t *arginv)
 {
 	pid_t pid;
 	char **_environ;
-	
+
 	pid = fork();
 	if (pid < 0)
 	{
@@ -75,7 +75,6 @@ pid_t exec_path(char *command, arg_inventory_t *arginv)
 	if (pid == 0)
 	{
 		_environ = zelda_to_ganondorf(arginv->envlist);
-		
 		if (execve(command, (char **)arginv->commands, _environ) < 0)
 			exec_error_exit("No Command\n", command, _environ, arginv);
 	}
@@ -95,7 +94,7 @@ pid_t execute(arg_inventory_t *arginv)
 	char **commands;
 	char *path, *command;
 	char **paths;
-	
+
 	envlist = arginv->envlist;
 	commands = (char **)arginv->commands;
 	command = safe_malloc(sizeof(char) * BUFSIZE);
@@ -113,7 +112,8 @@ pid_t execute(arg_inventory_t *arginv)
 			paths = tokenize_path(path);
 			cat_path(paths, command);
 			free_paths(paths);
-			free(path);									return (exec_path(command, arginv));
+			free(path);
+			return (exec_path(command, arginv));
 		}
 	}
 	free(command);

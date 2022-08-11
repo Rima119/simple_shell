@@ -44,10 +44,9 @@ int _history(arg_inventory_t *arginv)
 int _setenv(arg_inventory_t *arginv)
 {
 	char **commands, *new_var, *new_val;
-	
 	env_t *envlist = arginv->envlist;
-	commands = (char **)arginv->commands;
 
+	commands = (char **)arginv->commands;
 	if (commands[1] == NULL || commands[2] == NULL)
 	{
 		_perror("setenv: missing parameters.\n");
@@ -76,8 +75,8 @@ int _setenv(arg_inventory_t *arginv)
 int _unsetenv(arg_inventory_t *arginv)
 {
 	char **commands;
-
 	env_t *envlist = arginv->envlist;
+
 	commands = (char **)arginv->commands;
 	if (commands[1] == NULL)
 	{

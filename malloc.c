@@ -24,14 +24,14 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 		return (NULL);								}
 	if (old_size == new_size)
 		return (ptr);
-	
 	p = safe_malloc(new_size);
 	if (p == NULL)
 		return (NULL);
-	for (i = 0; i < old_size && i < new_size; i++)			
+	for (i = 0; i < old_size && i < new_size; i++)
 		p[i] = ((char *)ptr)[i];
-	
-	free(ptr);									return (p);
+
+	free(ptr);
+	return (p);
 }
 
 /**

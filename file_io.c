@@ -16,7 +16,6 @@ ssize_t read_textfile(char *filename, size_t letters)
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 		return (0);
-	
 	buffer = malloc(sizeof(char) * letters);
 	if (buffer == NULL)
 		return (0);
@@ -48,14 +47,12 @@ int trunc_text_to_file(char *filename, char *text_content)
 {
 	int fd;
 	size_t len;
-	
+
 	fd = open(filename, O_CREAT | O_WRONLY | O_TRUNC, 0600);
 	if (fd == -1)
 		return (-1);
-	
 	if (text_content == NULL)
 		return (close(fd) == -1 ? -1 : 1);
-	
 	len = _strlen(text_content);
 	if (write(fd, text_content, len) == -1)
 	{
@@ -79,11 +76,9 @@ int append_text_to_file(char *filename, char *text_content)
 	
 	fd = open(filename, O_CREAT | O_WRONLY | O_APPEND, 0666);
 	if (fd == -1)
-		return (-1);
-	
+		return (-1);	
 	if (text_content == NULL)
 		return (close(fd) == -1 ? -1 : 1);
-	
 	len = _strlen(text_content);
 	if (write(fd, text_content, len) == -1)
 	{

@@ -10,7 +10,7 @@ unsigned int link_count(env_t *head)
 {
 	env_t *tmp;
 	unsigned int count;
-	
+
 	tmp = head;
 	count = 0;
 	while (tmp != NULL)
@@ -57,7 +57,7 @@ char **zelda_to_ganondorf(env_t *head)
 	unsigned int count, len1, len2, lennew;
 	char **ganondorf, *var, *val, *new_val;
 	env_t *tmp;
-	
+
 	count = link_count(head);
 	ganondorf = malloc(sizeof(char *) * (count + 1));
 	tmp = head;

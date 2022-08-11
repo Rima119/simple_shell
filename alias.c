@@ -59,8 +59,8 @@ alias_t *add_node_alias(alias_t **head, char *alias, char *command)
 int modify_node_alias(alias_t **head, char *new_var, char *new_val)
 {
 	alias_t *temp;
-
 	temp = *head;
+
 	while (temp)
 	{
 		if (_strcmp(temp->alias, new_var) == 0)
@@ -116,8 +116,8 @@ int remove_node_alias(alias_t **head, char *var)
 int write_alias(alias_t *head)
 {
 	int i = 0;
-
 	alias_t *temp = head;
+
 	while (temp)
 	{
 		write(STDOUT_FILENO, temp->alias, _strlen(temp->alias));
